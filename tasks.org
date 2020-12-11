@@ -1,0 +1,7 @@
+#+TITLE:  Tasks for EC Bingo
+#+AUTHOR: Tucker R. Twomey
+* TODO Create demo
+  DEADLINE: <2020-12-15>
+** TODO Create card
+** TODO Coordinate
+* TODO Find out requirements
