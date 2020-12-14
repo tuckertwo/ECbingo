@@ -81,6 +81,9 @@ dup
 /gridbh 1.3 in def
 /ga { [ gridx1 gridy1 gridx2 gridy2 gridbw gridbh ] gridaddr } def
 
+% C M   Y   K
+1.0 1.0 0.0 0.0 setcolor
+
 /URWGothic-Demi 60 selectfont
 0 6.2 ga moveto
 (El Cerrito) show
@@ -91,7 +94,7 @@ dup
 1    in height 1 in sub 10 sub moveto
 (Round) show
 1.75 in height 1 in sub 10 sub moveto
-(1) show
+(1 (blue)) show
 
 1    in height 1 in sub 20 sub moveto
 (Card) show
@@ -113,13 +116,6 @@ gridx1 gridy1 gridx2 gridy2 rect stroke
 
 /URWGothic-Book 46 selectfont
 2 2 ga moveto (Free) show
-
-% C M   Y   K
-0.3 0.0 0.0 0.0 setcolor
-0 5 ga 5 5.7 ga rect fill
-% C M   Y   K
-0.0 0.0 0.0 1.0 setcolor
-
 
 /URWGothic-Book 72 selectfont
 (B) (I) (N) (G) (O)
