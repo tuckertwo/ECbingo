@@ -80,12 +80,12 @@ dup
 /gridbw 1.3 in def
 /gridbh 1.3 in def
 /ga  { [ gridx1 gridy1 gridx2 gridy2 gridbw gridbh ] gridaddr } def
-/gat { ga } def
+/gat { ga 25 add exch 05 add exch } def
 
 % C M   Y   K
 1.0 1.0 0.0 0.0 setcolor
 
-/URWGothic-Demi 60 selectfont
+/URWGothic-Demi 45 selectfont
 0 6.2 ga moveto
 (El Cerrito) show
 0 5.7 ga moveto
