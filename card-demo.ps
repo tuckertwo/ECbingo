@@ -81,27 +81,6 @@ dup
 /gridbh 1.3 in def
 /ga { [ gridx1 gridy1 gridx2 gridy2 gridbw gridbh ] gridaddr } def
 
-gridx1 gridy1 gridx2 gridy2 rect stroke
-[ gridx1 gridy1 gridx2 gridy2 gridbw gridbh ] grid
-
-/URWGothic-Book 46 selectfont
-2 2 ga moveto (Free) show
-
-% C M   Y   K
-0.3 0.0 0.0 0.0 setcolor
-0 5 ga 5 5.7 ga rect fill
-% C M   Y   K
-0.0 0.0 0.0 1.0 setcolor
-
-
-/URWGothic-Book 72 selectfont
-(B) (I) (N) (G) (O)
-4 -1 0
-{
-    5 ga moveto
-    show
-} for
-
 /URWGothic-Demi 60 selectfont
 0 6.2 ga moveto
 (El Cerrito) show
@@ -128,6 +107,27 @@ gridx1 gridy1 gridx2 gridy2 rect stroke
 (Date) show
 4.75 in height 1 in sub 20 sub moveto
 (2020-12-15) show
+
+gridx1 gridy1 gridx2 gridy2 rect stroke
+[ gridx1 gridy1 gridx2 gridy2 gridbw gridbh ] grid
+
+/URWGothic-Book 46 selectfont
+2 2 ga moveto (Free) show
+
+% C M   Y   K
+0.3 0.0 0.0 0.0 setcolor
+0 5 ga 5 5.7 ga rect fill
+% C M   Y   K
+0.0 0.0 0.0 1.0 setcolor
+
+
+/URWGothic-Book 72 selectfont
+(B) (I) (N) (G) (O)
+4 -1 0
+{
+    5 ga moveto
+    show
+} for
 
 /URWGothic-Book 72 selectfont
 0 0 ga moveto (00) show
