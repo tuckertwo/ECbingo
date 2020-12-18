@@ -38,4 +38,7 @@ verhoeff_onestep(t::Int, (p, x)) = verhoeff_onestep((p, x), t)
 @test verhoeff_onestep((2, 3), 3) ==  1
 @test verhoeff_onestep((3, 2), 1) ==  2
 
+# x=invdigits(xs) is the inverse of xs=digits(x, base=10)
+@test invdigits(digits(848584)) == 848584
+@test invdigits(digits(0))      == 0
 end
