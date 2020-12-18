@@ -1,5 +1,7 @@
 module Verhoeff
 
+using Test
+
 # Lookup tables for permutation and group multiplication
 const verhoeff_mult =
 [
@@ -28,5 +30,10 @@ const verhoeff_perm =
 ]
 
 const verhoeff_inv = [0, 4, 3, 2, 1, 5, 6, 7, 8, 9]
+
+@test verhoeff_onestep((0, 0), 0) ==  0
+@test verhoeff_onestep((1, 6), 0) ==  3
+@test verhoeff_onestep((2, 3), 3) ==  1
+@test verhoeff_onestep((3, 2), 1) ==  2
 
 end
