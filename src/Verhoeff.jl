@@ -31,6 +31,8 @@ const verhoeff_perm =
 
 const verhoeff_inv = [0, 4, 3, 2, 1, 5, 6, 7, 8, 9]
 
+verhoeff_onestep((p, x), t) = verhoeff_mult[begin+t][begin+verhoeff_perm[begin+p%8][begin+x]]
+
 @test verhoeff_onestep((0, 0), 0) ==  0
 @test verhoeff_onestep((1, 6), 0) ==  3
 @test verhoeff_onestep((2, 3), 3) ==  1
