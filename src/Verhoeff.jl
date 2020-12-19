@@ -48,12 +48,15 @@ begin
     end
 end
 
+# verhoeff_onestep computes the multiplication and permutation step of the Verhoeff algorithm.
+# verhoeff_onestep is exclusively left-associative
 verhoeff_onestep(t::Integer, (p, x)) = verhoeff_mult[begin+t][begin+verhoeff_perm[begin+(p-1)%8][begin+x]]
 @test verhoeff_onestep(0, (1, 0)) ==  0
 @test verhoeff_onestep(0, (2, 6)) ==  3
 @test verhoeff_onestep(3, (3, 3)) ==  1
 @test verhoeff_onestep(1, (4, 2)) ==  2
 
+# verhoeff_alg implements the recursive steps that are central to the Verhoeff algorithm.
 verhoeff_alg(xs::Array)        = foldl(verhoeff_onestep, collect(enumerate(xs)), init=0)
 verhoeff_alg(x::Unsigned)      = verhoeff_alg(digits(x))
 verhoeff_alg(x::Signed)        = verhoeff_alg(warnabs(x))
