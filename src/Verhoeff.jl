@@ -43,8 +43,8 @@ verhoeff_onestep(t::Int, (p, x)) = verhoeff_onestep((p, x), t)
 @test verhoeff_onestep((3, 3), 3) ==  1
 @test verhoeff_onestep((4, 2), 1) ==  2
 
-verhoeff_alg(xs::Array) = foldl(verhoeff_onestep, collect(enumerate(xs)), init=0)
-verhoeff_alg(x::Int)     = verhoeff_alg(digits(x))
+verhoeff_alg(xs::Array)     = foldl(verhoeff_onestep, collect(enumerate(xs)), init=0)
+verhoeff_alg(x::Int)        = verhoeff_alg(digits(x))
 
 # verhoeff_verify verifies a number with a Verhoeff algorithm check digit
 verhoeff_verify(x)          = verhoeff_alg(x) == 0
