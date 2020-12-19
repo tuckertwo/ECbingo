@@ -53,7 +53,8 @@ verhoeff_verify(x)          = verhoeff_alg(x) == 0
 @test !verhoeff_verify(2364)
 
 # verhoeff_check returns a raw number's Verhoeff algorithm check digit
-verhoeff_check(x)           = verhoeff_inv[begin+verhoeff_alg(x)]
+verhoeff_check(xs::Array)   = verhoeff_inv[begin+verhoeff_alg(xs)]
+verhoeff_check(x::Int)      = verhoeff_check(digits(x))
 @test verhoeff_check(236)     == 3
 @test verhoeff_check([6,3,2]) == 3
 
