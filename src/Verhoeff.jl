@@ -60,7 +60,7 @@ verhoeff_check(x::Int)      = verhoeff_check(digits(x))
 
 # verhoeff_gencheck takes a raw number and returns that number with its check
 # digit appended to it.
-verhoeff_gencheck(x::Array) = [[verhoeff_check(x)] x]
+verhoeff_gencheck(x::Array) = [[verhoeff_check(x)]; x]
 verhoeff_gencheck(x::Int)   = invdigits(verhoeff_gencheck(digits(x)))
 @test verhoeff_gencheck([6,3,2]) == [3,6,3,2]
 @test verhoeff_gencheck(236)     == 2363
