@@ -31,17 +31,17 @@ const verhoeff_perm =
 
 const verhoeff_inv = [0, 4, 3, 2, 1, 5, 6, 7, 8, 9]
 
+# x=invdigits(xs) is the inverse of xs=digits(x, base=10)
+invdigits(xs) = foldr((x, t) -> t*10+x, xs)
+@test invdigits(digits(848584)) == 848584
+@test invdigits(digits(0))      == 0
+
 verhoeff_onestep((p, x), t::Int) = verhoeff_mult[begin+t][begin+verhoeff_perm[begin+p%8][begin+x]]
 verhoeff_onestep(t::Int, (p, x)) = verhoeff_onestep((p, x), t)
 @test verhoeff_onestep((0, 0), 0) ==  0
 @test verhoeff_onestep((1, 6), 0) ==  3
 @test verhoeff_onestep((2, 3), 3) ==  1
 @test verhoeff_onestep((3, 2), 1) ==  2
-
-# x=invdigits(xs) is the inverse of xs=digits(x, base=10)
-invdigits(xs) = foldr((x, t) -> t*10+x, xs)
-@test invdigits(digits(848584)) == 848584
-@test invdigits(digits(0))      == 0
 
 # verhoeff_verify verifies a number with a Verhoeff algorithm check digit
 verhoeff_verify(x)          = verhoeff_alg(x) == 0
