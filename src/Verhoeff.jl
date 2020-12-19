@@ -36,12 +36,12 @@ invdigits(xs) = foldr((x, t) -> t*10+x, xs)
 @test invdigits(digits(848584)) == 848584
 @test invdigits(digits(0))      == 0
 
-verhoeff_onestep((p, x), t::Int) = verhoeff_mult[begin+t][begin+verhoeff_perm[begin+p%8][begin+x]]
+verhoeff_onestep((p, x), t::Int) = verhoeff_mult[begin+t][begin+verhoeff_perm[begin+(p-1)%8][begin+x]]
 verhoeff_onestep(t::Int, (p, x)) = verhoeff_onestep((p, x), t)
-@test verhoeff_onestep((0, 0), 0) ==  0
-@test verhoeff_onestep((1, 6), 0) ==  3
-@test verhoeff_onestep((2, 3), 3) ==  1
-@test verhoeff_onestep((3, 2), 1) ==  2
+@test verhoeff_onestep((1, 0), 0) ==  0
+@test verhoeff_onestep((2, 6), 0) ==  3
+@test verhoeff_onestep((3, 3), 3) ==  1
+@test verhoeff_onestep((4, 2), 1) ==  2
 
 verhoeff_alg(xs::Array) = foldl(verhoeff_onestep, collect(enumerate(xs)), init=0)
 verhoeff_alg(x::Int)     = verhoeff_alg(digits(x))
