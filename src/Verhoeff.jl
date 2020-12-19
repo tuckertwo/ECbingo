@@ -44,16 +44,20 @@ invdigits(xs) = foldr((x, t) -> t*10+x, xs)
 @test invdigits(digits(0))      == 0
 
 # verhoeff_verify verifies a number with a Verhoeff algorithm check digit
+verhoeff_verify(x)          = verhoeff_alg(x) == 0
 @test verhoeff_verify(2363)
 @test verhoeff_verify([3,6,3,2])
 @test !verhoeff_verify(2364)
 
 # verhoeff_check returns a raw number's Verhoeff algorithm check digit
+verhoeff_check(x)           = verhoeff_inv[begin+verhoeff_alg(x)]
 @test verhoeff_check(236)     == 3
 @test verhoeff_check([6,3,2]) == 3
 
 # verhoeff_gencheck takes a raw number and returns that number with its check
 # digit appended to it.
+verhoeff_gencheck(x::Array) = [[verhoeff_check(x)] x]
+verhoeff_gencheck(x::Int)   = invdigits(verhoeff_gencheck(digits(x)))
 @test verhoeff_gencheck([6,3,2]) == [3,6,3,2]
 @test verhoeff_gencheck(236)     == 2363
 
