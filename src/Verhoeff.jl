@@ -2,6 +2,8 @@ module Verhoeff
 
 using Test
 
+export verhoeff_gencheck, verhoeff_verify
+
 # Lookup tables for permutation and group multiplication
 const verhoeff_mult =
 [
