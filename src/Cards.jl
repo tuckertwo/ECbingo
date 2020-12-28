@@ -1,0 +1,153 @@
+module Cards
+export mk_card
+
+using Printf
+using Dates
+
+ci_mapfunc(xs) = ((li, x),) -> (CartesianIndices(xs)[li], x)
+
+mk_gridcell((i, n)) = @sprintf("%u %u gat moveto (%02u) show\n",
+  i.I[2]-1, i.I[1]-1, n)
+
+mk_grid(ns) = map(mk_gridcell ∘ ci_mapfunc(ns), collect(enumerate(ns)))
+
+mk_card(num, round, (c, m, y, k, col_name), date, ns) = """
+  %!PS
+  % Simple graph paper
+  % Written by Tucker R. Twomey
+  /in {72 mul} def
+  
+  % Hardware margin
+  /hwmargin  0.1389 in            def
+
+  % Get paper dimensions
+  currentpagedevice /PageSize get
+  dup
+  /width    exch 0 get def
+  /height   exch 1 get def
+
+  /DeviceCMYK setcolorspace
+  % C M   Y   K
+  0.0 0.0 0.0 1.0 setcolor
+
+  % Function to draw box
+  /rect
+  {
+    % Convert coord pairs to arrays to make stack ops easier
+    4 array astore /coord exch def % Shame!
+    % Stack is currently [ x2 y2 x1 y1 ] (top)
+    % X1 and Y1
+    %aload 4 2 roll moveto
+    %dup aload pop moveto
+    % X1          Y1
+    coord 2 get   coord 3 get moveto
+    % X1          Y2
+    coord 2 get   coord 1 get lineto
+    % X2          Y2
+    coord 0 get   coord 1 get lineto
+    % X2          Y1
+    coord 0 get   coord 3 get lineto
+    closepath
+  } def
+  
+  %%% Grid drawing
+  %%  Usage: [ <x1> <y1> <x2> <y2> <box-length> <box-height> ] grid-draw
+  /grid
+  {
+    /args exch def
+    %% Vertical lines
+    % Start               Inc            End
+    args 0 get            args 4 get     args 2 get
+    {
+      dup
+      % Y
+      args 1 get moveto
+      args 3 get  lineto
+      stroke
+    } for
+
+    %% Horizontal lines
+    % Start               Inc            End
+    args 1 get            args 5 get     args 3 get
+    {
+      dup
+      % X
+      args 0 get exch moveto
+      args 2 get exch lineto
+      stroke
+    } for
+  } def
+
+  /gridaddr
+  {
+    /args exch def
+    args 5 get mul args 1 get add
+    exch
+    args 4 get mul args 0 get add
+    exch
+  } def
+
+  /gridx1 1 in def
+  /gridy1 height 1 in sub 1.3 in 5.6 mul sub def
+  /gridx2 7.5 in def
+  /gridy2 height 1 in sub 1.3 in 0.6 mul sub def
+  /gridbw 1.3 in def
+  /gridbh 1.3 in def
+  /ga  { [ gridx1 gridy1 gridx2 gridy2 gridbw gridbh ] gridaddr } def
+  /gat { ga 25 add exch 05 add exch } def
+
+  $(c) $(m) $(y) $(k) setcolor
+
+  /URWGothic-Book 20 selectfont
+  0 -0.25 ga moveto
+  (Supporting) show
+  /URWGothic-Demi 45 selectfont
+  0 -0.65 ga moveto
+  (El Cerrito) show
+  0 -1.05 ga moveto
+  (Forensics) show
+
+  %1 in 1 in width 1 in sub height 1 in sub rect stroke
+
+  /Helvetica-Bold 12 selectfont
+  3 -0.20 ga moveto
+  (Round) show
+  4 -0.20 ga moveto
+  ($(@sprintf("%02u (%s)", round, col_name))) show
+
+  3 -0.31 ga moveto
+  (Card) show
+  4 -0.31 ga moveto
+  ($(@sprintf("%05u", num))) show
+
+  3 -0.42 ga moveto
+  (Name) show
+  %3.50 -0.42 ga 5 -0.33 ga rect stroke
+  3.50 -0.42 ga moveto 5 -0.42 ga lineto stroke
+
+  3 -0.53 ga moveto
+  (Date) show
+  4 -0.53 ga moveto
+  ($(date)) show
+
+  gridx1 gridy1 gridx2 gridy2 rect stroke
+  [ gridx1 gridy1 gridx2 gridy2 gridbw gridbh ] grid
+
+  /URWGothic-Book 46 selectfont
+  2 2 ga moveto (Free) show
+
+  /URWGothic-Book 72 selectfont
+  (B) (I) (N) (G) (O)
+  4 -1 0
+  {
+    5 ga moveto
+    show
+  } for
+
+  /URWGothic-Book 72 selectfont
+  $(mk_grid(ns)...)
+
+  showpage
+  """
+
+end
