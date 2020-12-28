@@ -1,9 +1,15 @@
 module Cards
+# This module generates cards. Its contents will have to be changed to account
+# for variations in the card template.
+
 export mk_card
 
 using Printf
 using Dates
 
+# This function returns a function that converts linear indices to Cartesian (x
+# and y) indices for the given array.
+# Usage: map(ci_mapfunc(xs), collect(enumerate(xs)))
 ci_mapfunc(xs) = ((li, x),) -> (CartesianIndices(xs)[li], x)
 
 mk_gridcell((i, n)) = @sprintf("%u %u gat moveto (%02u) show\n",
@@ -11,6 +17,9 @@ mk_gridcell((i, n)) = @sprintf("%u %u gat moveto (%02u) show\n",
 
 mk_grid(ns) = map(mk_gridcell ∘ ci_mapfunc(ns), collect(enumerate(ns)))
 
+# The interface by which card details are passed to this function is subject
+# to change.
+# (I might make it a struct.)
 mk_card(num, round, (c, m, y, k, col_name), date, ns) = """
   %!PS
   % Simple graph paper
