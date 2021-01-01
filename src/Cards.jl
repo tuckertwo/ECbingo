@@ -17,7 +17,7 @@ ci_mapfunc(xs) = ((li, x),) -> (CartesianIndices(xs)[li], x)
 mk_gridcell((i, n)) = if i.I === (3,3) ""
   else @sprintf("%u %u gat moveto (%02u) show\n", i.I[2]-1, i.I[1]-1, n) end
 
-mk_grid(ns) = map(mk_gridcell ∘ ci_mapfunc(ns), collect(enumerate(ns)))
+mk_grid(ns) = map(mk_gridcell ∘ ci_mapfunc(ns), enumerate(ns))
 
 # The interface by which card details are passed to this function is subject
 # to change.
