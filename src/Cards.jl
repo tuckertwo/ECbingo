@@ -6,6 +6,7 @@ export mk_card
 
 using Printf
 using Dates
+using ColorTypes
 
 # This function returns a function that converts linear indices to Cartesian (x
 # and y) indices for the given array.
@@ -20,7 +21,7 @@ mk_grid(ns) = map(mk_gridcell ∘ ci_mapfunc(ns), collect(enumerate(ns)))
 # The interface by which card details are passed to this function is subject
 # to change.
 # (I might make it a struct.)
-mk_card(num, round, (c, m, y, k, col_name), date, ns) = """
+mk_card(num, round, (col, col_name), date, ns) = """
   %!PS
   % Simple graph paper
   % Written by Tucker R. Twomey
@@ -105,7 +106,8 @@ mk_card(num, round, (c, m, y, k, col_name), date, ns) = """
   /ga  { [ gridx1 gridy1 gridx2 gridy2 gridbw gridbh ] gridaddr } def
   /gat { ga 25 add exch 05 add exch } def
 
-  $(c) $(m) $(y) $(k) setcolor
+  /DeviceRGB setcolorspace
+  $(float(col.r)) $(float(col.g)) $(float(col.b)) setcolor
 
   /URWGothic-Book 20 selectfont
   0 -0.25 ga moveto
