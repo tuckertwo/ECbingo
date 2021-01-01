@@ -6,6 +6,7 @@ export mk_card
 
 using Printf
 using Dates
+using Colors
 using ColorTypes
 
 # This function returns a function that converts linear indices to Cartesian (x
@@ -21,7 +22,12 @@ mk_grid(ns) = map(mk_gridcell ∘ ci_mapfunc(ns), collect(enumerate(ns)))
 # The interface by which card details are passed to this function is subject
 # to change.
 # (I might make it a struct.)
-mk_card(num, round, (col, col_name), date, ns) = """
+mk_card(num, round, colorant::String, date, ns) =
+  mk_card(num, round,
+          (convert(RGB, parse(Colorant, colorant)), colorant),
+          date, ns)
+
+mk_card(num, round, (col, col_name),  date, ns) = """
   %!PS
   % Simple graph paper
   % Written by Tucker R. Twomey
