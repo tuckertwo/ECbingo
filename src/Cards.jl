@@ -27,7 +27,7 @@ mk_card(ns, colorant::String; kwargs...) =
           (convert(RGB, parse(Colorant, colorant)), colorant);
           kwargs...)
 
-mk_card(ns, (col, col_name); num=0, round=0, date) = """
+mk_card(ns, (col, col_name); num=0, round=0, date=nothing) = """
   %!PS
   % Simple graph paper
   % Written by Tucker R. Twomey
@@ -142,10 +142,18 @@ mk_card(ns, (col, col_name); num=0, round=0, date) = """
   %3.50 -0.42 ga 5 -0.33 ga rect stroke
   3.50 -0.42 ga moveto 5 -0.42 ga lineto stroke
 
-  3 -0.53 ga moveto
-  (Date) show
-  4 -0.53 ga moveto
-  ($(date)) show
+  $(
+    if !isnothing(date)
+      """
+      3 -0.53 ga moveto
+      (Date) show
+      4 -0.53 ga moveto
+      ($(date)) show
+      """
+    else
+      ""
+    end
+  )
 
   gridx1 gridy1 gridx2 gridy2 rect stroke
   [ gridx1 gridy1 gridx2 gridy2 gridbw gridbh ] grid
