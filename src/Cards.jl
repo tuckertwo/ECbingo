@@ -27,7 +27,7 @@ mk_card(ns, colorant::String; kwargs...) =
           (convert(RGB, parse(Colorant, colorant)), colorant);
           kwargs...)
 
-mk_card(ns, (col, col_name); num, round, date) = """
+mk_card(ns, (col, col_name); num=0, round=0, date) = """
   %!PS
   % Simple graph paper
   % Written by Tucker R. Twomey
