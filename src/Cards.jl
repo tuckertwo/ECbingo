@@ -22,12 +22,12 @@ mk_grid(ns) = map(mk_gridcell ∘ ci_mapfunc(ns), collect(enumerate(ns)))
 # The interface by which card details are passed to this function is subject
 # to change.
 # (I might make it a struct.)
-mk_card(num, round, colorant::String, date, ns) =
-  mk_card(num, round,
-          (convert(RGB, parse(Colorant, colorant)), colorant),
-          date, ns)
+mk_card(ns, colorant::String; kwargs...) =
+  mk_card(ns,
+          (convert(RGB, parse(Colorant, colorant)), colorant);
+          kwargs...)
 
-mk_card(num, round, (col, col_name),  date, ns) = """
+mk_card(ns, (col, col_name); num, round, date) = """
   %!PS
   % Simple graph paper
   % Written by Tucker R. Twomey
