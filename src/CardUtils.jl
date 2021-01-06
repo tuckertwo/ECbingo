@@ -2,7 +2,7 @@ module CardUtils
 
 using StatsBase
 
-export ps2pdf
+export ps2pdf, gen_rand_array
 
 # Converts PostScript files to PDF files.
 # Requires GhostScript to be installed and the `ps2pdf` utility to be in the
