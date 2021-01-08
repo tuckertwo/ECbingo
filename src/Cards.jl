@@ -49,7 +49,7 @@ mk_card(ns, colorant::String; kwargs...) =
           (convert(RGB, parse(Colorant, colorant)), colorant);
           kwargs...)
 
-mk_card(ns, (col, col_name); num=0, round=0, date=nothing) = """
+mk_card(ns, (col, col_name); num=0, round=0, date=nothing, draft=false) = """
   %!PS
   % Bingo card template
   % Written by Tucker R. Twomey
@@ -86,6 +86,24 @@ mk_card(ns, (col, col_name); num=0, round=0, date=nothing) = """
     % X2          Y1
     coord 0 get   coord 3 get lineto
     closepath
+  } def
+
+  /strike
+  {
+    % Convert coord pairs to arrays to make stack ops easier
+    4 array astore /coord exch def % Shame!
+    % Stack is currently [ x2 y2 x1 y1 ] (top)
+    % X1 and Y1
+    %aload 4 2 roll moveto
+    %dup aload pop moveto
+    % X1          Y1
+    coord 2 get   coord 3 get moveto
+    % X2          Y2
+    coord 0 get   coord 1 get lineto stroke
+    % X1          Y2
+    coord 2 get   coord 1 get moveto
+    % X2          Y1
+    coord 0 get   coord 3 get lineto stroke
   } def
 
   %%% Grid drawing
@@ -146,8 +164,30 @@ mk_card(ns, (col, col_name); num=0, round=0, date=nothing) = """
   0 -1.05 ga moveto
   (Forensics) show
 
+  $(
+  if draft
+    """
+    gsave
+    0.8 setgray % Faint gray
+    /Helvetica 175 selectfont
+    2 2 ga moveto
+    58 rotate
+    (Draft) show
+    grestore
+    gsave
+    0.0 setgray % Black
+    20 setlinewidth
+    0 0 ga 2.25 -1.05 ga strike
+    grestore
+    """
+  else
+    ""
+  end
+  )
+
   %1 in 1 in width 1 in sub height 1 in sub rect stroke
 
+  $(float(col.r)) $(float(col.g)) $(float(col.b)) setcolor
   /Helvetica-Bold 12 selectfont
   3 -0.20 ga moveto
   (Name) show
