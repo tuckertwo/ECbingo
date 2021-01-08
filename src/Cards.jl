@@ -19,6 +19,16 @@ mk_gridcell((i, n)) = if i.I === (3,3) ""
 
 mk_grid(ns) = map(mk_gridcell ∘ ci_mapfunc(ns), enumerate(ns))
 
+handle_date(date::Nothing)        = ""
+handle_date(date::Date)           = handle_date(format(date, "YYYY-mm-dd"))
+handle_date(date::AbstractString) = """
+  3 -0.53 ga moveto
+  (Date) show
+  4 -0.53 ga moveto
+  ($(date)) show
+  """
+
+
 # The interface by which card details are passed to this function is subject
 # to change.
 # (I might make it a struct.)
@@ -142,18 +152,7 @@ mk_card(ns, (col, col_name); num=0, round=0, date=nothing) = """
   %3.50 -0.42 ga 5 -0.33 ga rect stroke
   3.50 -0.42 ga moveto 5 -0.42 ga lineto stroke
 
-  $(
-    if !isnothing(date)
-      """
-      3 -0.53 ga moveto
-      (Date) show
-      4 -0.53 ga moveto
-      ($(date)) show
-      """
-    else
-      ""
-    end
-  )
+  $(handle_date(date))
 
   gridx1 gridy1 gridx2 gridy2 rect stroke
   [ gridx1 gridy1 gridx2 gridy2 gridbw gridbh ] grid
