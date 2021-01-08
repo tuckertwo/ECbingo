@@ -5,7 +5,7 @@ using Random
 
 const round_colors = ["maroon", "navy", "DarkMagenta"]
 
-autoinc = let i=-1; () -> i+=1 end
+autoinc() = let i=-1; () -> i+=1 end
 numgen = autoinc()
 
 wrap_contenttype(data, type) = respond(WebRenderable(
