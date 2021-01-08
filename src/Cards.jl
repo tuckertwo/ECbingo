@@ -29,10 +29,10 @@ mk_card(ns, colorant::String; kwargs...) =
 
 mk_card(ns, (col, col_name); num=0, round=0, date=nothing) = """
   %!PS
-  % Simple graph paper
+  % Bingo card template
   % Written by Tucker R. Twomey
   /in {72 mul} def
-  
+
   % Hardware margin
   /hwmargin  0.1389 in            def
 
@@ -65,7 +65,7 @@ mk_card(ns, (col, col_name); num=0, round=0, date=nothing) = """
     coord 0 get   coord 3 get lineto
     closepath
   } def
-  
+
   %%% Grid drawing
   %%  Usage: [ <x1> <y1> <x2> <y2> <box-length> <box-height> ] grid-draw
   /grid
