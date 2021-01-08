@@ -22,11 +22,23 @@ mk_grid(ns) = map(mk_gridcell ∘ ci_mapfunc(ns), enumerate(ns))
 handle_date(date::Nothing)        = ""
 handle_date(date::Date)           = handle_date(Dates.format(date,
   dateformat"YYYY-mm-dd"))
+handle_date(date::DateTime)       = handle_date(Date(date)) *
+  handle_time(Time(date))
 handle_date(date::AbstractString) = """
   3 -0.53 ga moveto
   (Date) show
   4 -0.53 ga moveto
   ($(date)) show
+  """
+
+handle_time(time::Nothing)        = ""
+handle_time(time::Time)           = handle_time(Dates.format(time,
+  dateformat"II:MM pp"))
+handle_time(time::AbstractString) = """
+  3 -0.64 ga moveto
+  (Starting At) show
+  4 -0.64 ga moveto
+  ($(time)) show
   """
 
 # The interface by which card details are passed to this function is subject
