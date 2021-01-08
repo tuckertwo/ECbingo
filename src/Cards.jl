@@ -150,9 +150,9 @@ mk_card(ns, (col, col_name); num=0, round=0, date=nothing) = """
 
   /Helvetica-Bold 12 selectfont
   3 -0.20 ga moveto
-  (Round) show
-  4 -0.20 ga moveto
-  ($(@sprintf("%02u (%s)", round, col_name))) show
+  (Name) show
+  %3.50 -0.42 ga 5 -0.33 ga rect stroke
+  3.50 -0.20 ga moveto 5 -0.20 ga lineto stroke
 
   3 -0.31 ga moveto
   (Card) show
@@ -160,9 +160,9 @@ mk_card(ns, (col, col_name); num=0, round=0, date=nothing) = """
   ($(@sprintf("%05u", num))) show
 
   3 -0.42 ga moveto
-  (Name) show
-  %3.50 -0.42 ga 5 -0.33 ga rect stroke
-  3.50 -0.42 ga moveto 5 -0.42 ga lineto stroke
+  (Round) show
+  4 -0.42 ga moveto
+  ($(@sprintf("%02u (%s)", round, col_name))) show
 
   $(handle_date(date))
 
