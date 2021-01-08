@@ -2,7 +2,7 @@ module Verhoeff
 
 using Test
 
-export verhoeff_gencheck, verhoeff_verify
+export verhoeff_gencheck, verhoeff_verify, stripcheck
 
 # Lookup tables for permutation and group multiplication
 const verhoeff_mult =
@@ -82,4 +82,6 @@ verhoeff_gencheck(x::Signed)   = verhoeff_gencheck(warnabs(x))
 @test verhoeff_gencheck([6,3,2]) == [3,6,3,2]
 @test verhoeff_gencheck(236)     == 2363
 
+stripcheck(x)                  = Int(floor(x/10))
+@test stripcheck(1234) == 123
 end
