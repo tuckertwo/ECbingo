@@ -17,7 +17,7 @@ end
 gen_rand_col(rng, yl, replace) = (r) -> sample(rng, r, yl, replace=replace)
 
 # TODO: Write tests
-gen_rand_array(rng; ranges=[01:10, 11:20, 21:30, 31:40, 41:50], yl=5,
+gen_rand_array(rng; ranges=[01:15, 16:30, 31:45, 46:65, 66:75], yl=5,
                replace=false) = hcat(map(gen_rand_col(rng, yl, replace), ranges)...)
 
 end
