@@ -13,6 +13,6 @@ route("/gencard/:round::Int/:id::Int/card.pdf",
       named=:get_card_pdf)
 
 route("/gencard/:round::Int/seq.ps",
-      CardgenController.genseq(:get_card_ps))
+      CardgenController.genseq_rg(:get_card_ps))
 route("/gencard/:round::Int/seq.pdf",
-      CardgenController.genseq(:get_card_pdf))
+      CardgenController.genseq_rg(:get_card_pdf))
