@@ -24,7 +24,7 @@ gencard_ps_r() = wrap_contenttype(gencard_ps(payload(:id), payload(:round)),
 gencard_pdf_r() = wrap_contenttype(gencard_pdf(payload(:id), payload(:round)),
                                    "application/pdf")
 
-genseq(sym) = () -> redirect(sym,
-                             id=verhoeff_gencheck(numgen()),
-                             round=payload(:round))
+genseq_rg(sym)   = () -> redirect(sym,
+                                  id=verhoeff_gencheck(numgen()),
+                                  round=payload(:round))
 end
