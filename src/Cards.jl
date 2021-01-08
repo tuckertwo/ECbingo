@@ -20,14 +20,14 @@ mk_gridcell((i, n)) = if i.I === (3,3) ""
 mk_grid(ns) = map(mk_gridcell ∘ ci_mapfunc(ns), enumerate(ns))
 
 handle_date(date::Nothing)        = ""
-handle_date(date::Date)           = handle_date(format(date, "YYYY-mm-dd"))
+handle_date(date::Date)           = handle_date(Dates.format(date,
+  dateformat"YYYY-mm-dd"))
 handle_date(date::AbstractString) = """
   3 -0.53 ga moveto
   (Date) show
   4 -0.53 ga moveto
   ($(date)) show
   """
-
 
 # The interface by which card details are passed to this function is subject
 # to change.
