@@ -213,12 +213,14 @@ mk_card(ns, (col, col_name); num=0, round=0, date=nothing, draft=false) = """
   2 2 ga moveto (Free) show
 
   /URWGothic-Book 72 selectfont
-  (B) ( I) (N) (G) (O)
-  4.2 -1 0
-  {
-    5 ga moveto
-    show
-  } for
+  0.2 5 ga moveto
+  (BINGO)
+  [0.5 gridbw add
+  -0.3 gridbw add
+  -0.1 gridbw add
+   0.0 gridbw add
+   0.0 gridbw add]
+  xshow
 
   /URWGothic-Book 72 selectfont
   $(mk_grid(ns)...)
