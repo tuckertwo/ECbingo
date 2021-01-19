@@ -215,9 +215,9 @@ mk_card(ns, (col, col_name); num=0, round=0, date=nothing, draft=false) = """
   /URWGothic-Book 72 selectfont
   0.2 5 ga moveto
   (BINGO)
-  [1.0 gridbw mul
-   1.0 gridbw mul
-   1.0 gridbw mul
+  [1.2 gridbw mul
+   0.8 gridbw mul
+   0.9 gridbw mul
    1.0 gridbw mul
    1.0 gridbw mul]
   xshow
