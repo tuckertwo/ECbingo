@@ -213,8 +213,8 @@ mk_card(ns, (col, col_name); num=0, round=0, date=nothing, draft=false) = """
   2 2 ga moveto (Free) show
 
   /URWGothic-Book 72 selectfont
-  (B) (I) (N) (G) (O)
-  4 -1 0
+  (B) ( I) (N) (G) (O)
+  4.2 -1 0
   {
     5 ga moveto
     show
