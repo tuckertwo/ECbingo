@@ -110,7 +110,7 @@
           </fieldset>
           <div class="form-group offset-sm-2 col-sm-2">
             <label class="" for="addl-cards-sel">Additional cards</label>
-            <input class="form-control" id="addl-cards-sel" name="addl-cards" type="number" value="0" onchange="updateInvoice()" onchange="syncAddlCards('addl-cards-sel', 'addl-cards-inv')">
+            <input class="form-control" id="addl-cards-sel" name="addl-cards" type="number" value="0" onchange="syncAddlCards('addl-cards-sel', 'addl-cards-inv'); updateInvoice();">
           </div>
         </div>
         <h2>Summary</h2>
