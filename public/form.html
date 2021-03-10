@@ -113,6 +113,39 @@
             <input class="form-control" id="addl-cards-sel" name="addl-cards" type="number" value="0" onchange="updateInvoice()" onchange="syncAddlCards('addl-cards-sel', 'addl-cards-inv')">
           </div>
         </div>
+        <h2>Summary</h2>
+        <table class="table table-bordered table-striped table-hover mb-4">
+          <thead>
+            <tr>
+              <th scope="col">Item</th>
+              <th scope="col">Number of Cards</th>
+              <th scope="col">@</th>
+              <th class="text-right" scope="col">Unit Price</th>
+              <th class="text-right" scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="inv-pkg-item">Placeholder Item</td>
+              <td class="text-right" colspan="3" id="inv-pkg-card">2</td>
+              <td class="text-right" id="inv-pkg-price">$60.00</td>
+            </tr>
+            <tr>
+              <td>Additional cards</td>
+              <td class="text-right" id="inv-addl-card">100</td>
+              <td>@</td>
+              <td class="text-right">$10.00</td>
+              <td class="text-right" id="inv-addl-price">$1 000.00</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="table-primary">
+              <td>Total</td>
+              <td class="text-right" colspan="3" id="inv-total-cards">102</td>
+              <td class="text-right" id="inv-total-price">$1 060.00</td>
+            </tr>
+          </tfoot>
+        </table>
         <h2>Select payment method and continue</h2>
         <fieldset class="form-group">
           <div class="form-check">
