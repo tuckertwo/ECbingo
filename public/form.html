@@ -149,7 +149,7 @@
         <h2>Select payment method and continue</h2>
         <fieldset class="form-group">
           <div class="form-check">
-            <input class="form-check-input" id="payment-token" type="radio" name="payment" value="token" onchange="endisToken()" required>
+            <input class="form-check-input" id="payment-token" type="radio" name="payment" value="token" onchange="enDisToken()" required>
             <label class="form-check-label" for="payment-token">
               Token payment
               (select if you've been provided a token of the
@@ -186,6 +186,11 @@
       {
         alert("Additional cards field (" + dest + ") must be synced (from " +
              src + ").");
+      }
+
+      function enDisToken()
+      {
+        alert("Token field must be toggled");
       }
     </script>
   </body>
