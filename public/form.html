@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Gaucho Bingo &mdash; Sign-up form</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sign up here for the Gaucho Bingo Night">
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet" crossorgin="anonymous">
+    <link href="/gauchos.png"                    rel="icon" type="image/png">
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+     body                     {font-family: "Inter var", sans-serif;}
+     h1, h2, .display-4       {font-weight: 800; letter-spacing: -0.054em;}
+     .navbar-brand            {font-weight: 800; letter-spacing: -0.04em; font-size: 150%;}
+     table                    {font-variant: tabular-nums slashed-zero; font-feature-settings: "ss02";}
+     tfoot                    {font-weight: bold;}
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+      <a class="navbar-brand" href="/">
+        <img src="gauchos.png" width="35" height="35" alt="El Cerrito Gauchos">
+        Gaucho Bingo Night
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="navbar-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
+    <script>
+      function updateInvoice()
+      {
+        alert("Invoice must be updated!");
+      }
+
+      function syncAddlCards(src, dest)
+      {
+        alert("Additional cards field (" + dest + ") must be synced (from " +
+             src + ").");
+      }
+    </script>
+  </body>
+</html>
