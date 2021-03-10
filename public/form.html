@@ -183,10 +183,31 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
     <script>
+      'use strict';
+      // These values are just for client-side verification. If you edit them,
+      // the server will reject the order.
+      const pkgs =
+            {
+              "basic": {"name": "Basic package", "cards": 1, "price": 20},
+              "vip":   {"name": "VIP package",   "cards": 2, "price": 60}
+            }
+      const addl_price = 10
       function updateInvoice()
       {
-        alert("Invoice must be updated!");
+        var form = $('form')[0].elements;
+        var pkg  = pkgs[form['pkg'].value];
+
+        $('#inv-pkg-item').html(pkg.name);
+        $('#inv-pkg-card').html(pkg.cards);
+        $('#inv-pkg-price').html(`\$${pkg.price.toFixed(2)}`);
+
+        var addl = parseInt(form['addl-cards-sel'].value)
+        $('#inv-addl-price').html(`\$${(addl*addl_price).toFixed(2)}`)
+
+        $('#inv-total-cards').html(`${addl+pkg.cards}`)
+        $('#inv-total-price').html(`\$${(addl*addl_price+pkg.price).toFixed(2)}`)
       }
+      $(document).ready(()=>{updateInvoice()});
 
       function syncAddlCards(src, dest)
       {
