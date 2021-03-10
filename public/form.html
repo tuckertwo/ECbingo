@@ -59,6 +59,34 @@
           <label for="email">Email</label>
           <input class="form-control" id="email" name="email" type="email" autocomplete="email" placeholder="Required" required>
         </div>
+        <h2>What to order</h2>
+        <div class="form-row mb-4">
+          <legend class="col-form-label col-sm-2 float-sm-left">
+            Select package:
+          </legend>
+          <fieldset class="form-group col-sm-6">
+            <div class="form-check">
+              <input class="form-check-input" id="check-basic" type="radio" name="pkg" value="basic" onchange="updateInvoice()" required>
+              <label class="form-check-label" for="check-basic">
+                $20: Basic package
+                (includes 1 bingo card, delivered via email)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" id="check-basic" type="radio" name="pkg" value="vip" onchange="updateInvoice()" required>
+              <label class="form-check-label" for="check-basic">
+                $60: VIP package
+                (includes cards printed on thick cardstock, snacks,
+                a commemorative drinking glass, and an ink stamper;
+                delivered by hand to any address in the Greater Bay Area)
+              </label>
+            </div>
+          </fieldset>
+          <div class="form-group offset-sm-2 col-sm-2">
+            <label class="" for="addl-cards-sel">Additional cards</label>
+            <input class="form-control" id="addl-cards-sel" name="addl-cards" type="number" value="0" onchange="updateInvoice()" onchange="syncAddlCards('addl-cards-sel', 'addl-cards-inv')">
+          </div>
+        </div>
       </form>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
