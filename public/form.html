@@ -110,7 +110,7 @@
           </fieldset>
           <div class="form-group offset-sm-2 col-sm-2">
             <label class="" for="addl-cards-sel">Additional cards</label>
-            <input class="form-control" id="addl-cards-sel" name="addl-cards" type="number" value="0" onchange="syncAddlCards('addl-cards-sel', 'addl-cards-inv'); updateInvoice();">
+            <input class="form-control" id="addl-cards-sel" name="addl-cards-sel" type="number" value="0" onchange="syncAddlCards('addl-cards-sel', 'addl-cards-inv'); updateInvoice();">
           </div>
         </div>
         <h2>Summary</h2>
@@ -132,7 +132,12 @@
             </tr>
             <tr>
               <td>Additional cards</td>
-              <td class="text-right" id="inv-addl-card">100</td>
+              <td class="text-right" id="inv-addl-card">
+                <div class="form-group mb-0">
+                  <label class="sr-only" for="addl-cards-inv">Quantity</label>
+                  <input class="form-control" id="addl-cards-inv" name="addl-cards-inv" type="number" value="0" onchange="syncAddlCards('addl-cards-inv', 'addl-cards-sel'); updateInvoice();">
+                </div>
+              </td>
               <td>@</td>
               <td class="text-right">$10.00</td>
               <td class="text-right" id="inv-addl-price">$1 000.00</td>
