@@ -113,6 +113,31 @@
             <input class="form-control" id="addl-cards-sel" name="addl-cards" type="number" value="0" onchange="updateInvoice()" onchange="syncAddlCards('addl-cards-sel', 'addl-cards-inv')">
           </div>
         </div>
+        <h2>Select payment method and continue</h2>
+        <fieldset class="form-group">
+          <div class="form-check">
+            <input class="form-check-input" id="payment-token" type="radio" name="payment" value="token" onchange="endisToken()" required>
+            <label class="form-check-label" for="payment-token">
+              Token payment
+              (select if you've been provided a token of the
+              form <code>00000000-0000-0000-0000-000000000000</code>)
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" id="payment-informal" type="radio" name="payment" value="informal" required>
+            <label class="form-check-label" for="payment-informal">
+              Informal payment (with cash, check, etc.)
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" id="payment-paypal" type="radio" name="payment" value="paypal" required>
+            <label class="form-check-label" for="payment-paypal">
+              PayPal (ACH, credit, debit, etc.)
+            </label>
+          </div>
+        </fieldset>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary form-control">Procced to payment</button>
       </form>
     </div>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
