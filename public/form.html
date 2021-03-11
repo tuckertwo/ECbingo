@@ -235,8 +235,18 @@
 
       function enDisToken()
       {
-        alert("Token field must be toggled");
+        if ($('form')[0].elements['payment'].value == 'token')
+        {
+          $('#token-div').attr('hidden', null)
+          $('#token-input').attr('disabled', null)
+          $('#token-input').attr('required', 't')
+        } else {
+          $('#token-div').attr('hidden', 't')
+          $('#token-input').attr('disabled', 't')
+          $('#token-input').attr('required', null)
+        }
       }
+      $(document).ready(()=>{enDisToken()});
     </script>
   </body>
 </html>
