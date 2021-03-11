@@ -153,6 +153,8 @@
             </tr>
           </tfoot>
         </table>
+        <input id="xc-total-cards" name="xc-total-cards" type="hidden" value="NaN">
+        <input id="xc-total-price" name="xc-total-price" type="hidden" value="NaN">
         <h2>Payment</h2>
         <div class="form-row">
           <legend class="col-form-label col-sm-2 float-sm-left">
@@ -217,8 +219,12 @@
         var addl = parseInt(form['addl-cards-sel'].value)
         $('#inv-addl-price').html(`\$${(addl*addl_price).toFixed(2)}`)
 
-        $('#inv-total-cards').html(`${addl+pkg.cards}`)
-        $('#inv-total-price').html(`\$${(addl*addl_price+pkg.price).toFixed(2)}`)
+        var totalCards = addl+pkg.cards
+        var totalPrice = addl*addl_price+pkg.price
+        $('#inv-total-cards').html(`${totalCards}`)
+        $('#inv-total-price').html(`\$${totalPrice.toFixed(2)}`)
+        $('#xc-total-cards').val(totalCards);
+        $('#xc-total-price').val(totalPrice);
       }
       $(document).ready(()=>{updateInvoice()});
 
