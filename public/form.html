@@ -153,29 +153,40 @@
             </tr>
           </tfoot>
         </table>
-        <h2>Select payment method and continue</h2>
-        <fieldset class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" id="payment-token" type="radio" name="payment" value="token" onchange="enDisToken()" required>
-            <label class="form-check-label" for="payment-token">
-              Token payment
-              (select if you've been provided a token of the
-              form <code>00000000-0000-0000-0000-000000000000</code>)
-            </label>
+        <h2>Payment</h2>
+        <div class="form-row">
+          <legend class="col-form-label col-sm-2 float-sm-left">
+            Payment method
+          </legend>
+          <fieldset class="form-group col-sm-6 float-sm-left">
+            <div class="form-check">
+              <input class="form-check-input" id="payment-token" type="radio" name="payment" value="token" onchange="enDisToken()" required>
+              <label class="form-check-label" for="payment-token">
+                Token payment
+                (select if you've been provided a token of the
+                form <code>00000000-0000-0000-0000-000000000000</code>)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" id="payment-informal" type="radio" name="payment" value="informal" onchange="enDisToken()" required>
+              <label class="form-check-label" for="payment-informal">
+                Informal payment (with cash, check, etc.)
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" id="payment-paypal" type="radio" name="payment" value="paypal" onchange="enDisToken()" required>
+              <label class="form-check-label" for="payment-paypal">
+                PayPal (ACH, credit, debit, etc.)
+              </label>
+            </div>
+          </fieldset>
+          <div id="token-div" class="form-group col-sm-4">
+            <label class="" for="token-input">Enter token here</label>
+            <input class="form-control" id="token-input" name="token-val" type="text"
+                   placeholder="00000000-0000-0000-0000-000000000000"
+                   pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$">
           </div>
-          <div class="form-check">
-            <input class="form-check-input" id="payment-informal" type="radio" name="payment" value="informal" required>
-            <label class="form-check-label" for="payment-informal">
-              Informal payment (with cash, check, etc.)
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" id="payment-paypal" type="radio" name="payment" value="paypal" required>
-            <label class="form-check-label" for="payment-paypal">
-              PayPal (ACH, credit, debit, etc.)
-            </label>
-          </div>
-        </fieldset>
+        </div>
         <div class="form-group">
           <button type="submit" class="btn btn-primary form-control">Procced to payment</button>
         </div>
