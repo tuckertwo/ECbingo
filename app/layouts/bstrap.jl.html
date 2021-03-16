@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Gaucho Bingo &mdash; $(title)</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sign up here for the Gaucho Bingo Night">
+    <link href="https://rsms.me/inter/inter.css" rel="stylesheet" crossorgin="anonymous">
+    <link href="/gauchos.png"                    rel="icon" type="image/png">
+    <link href="/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+     body                     {font-family: "Inter var", sans-serif;}
+     h1, h2, .display-4       {font-weight: 800; letter-spacing: -0.054em;}
+     .navbar-brand            {font-weight: 800; letter-spacing: -0.04em; font-size: 150%;}
+     table                    {font-variant: tabular-nums slashed-zero; font-feature-settings: "ss02";}
+     tfoot                    {font-weight: bold;}
+    </style>
+  </head>
+  <body>
+    <% @yield %>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/node_modules/@popperjs/core/dist/umd/popper.js"></script>
+  </body>
+</html>

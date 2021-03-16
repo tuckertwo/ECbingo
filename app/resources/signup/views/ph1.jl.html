@@ -1,252 +1,231 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Gaucho Bingo &mdash; Sign-up form</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Sign up here for the Gaucho Bingo Night">
-    <link href="https://rsms.me/inter/inter.css" rel="stylesheet" crossorgin="anonymous">
-    <link href="/gauchos.png"                    rel="icon" type="image/png">
-    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-     body                     {font-family: "Inter var", sans-serif;}
-     h1, h2, .display-4       {font-weight: 800; letter-spacing: -0.054em;}
-     .navbar-brand            {font-weight: 800; letter-spacing: -0.04em; font-size: 150%;}
-     table                    {font-variant: tabular-nums slashed-zero; font-feature-settings: "ss02";}
-     tfoot                    {font-weight: bold;}
-    </style>
-  </head>
-  <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-      <a class="navbar-brand" href="/">
-        <img src="gauchos.png" width="35" height="35" alt="El Cerrito Gauchos">
-        Gaucho Bingo Night
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navbar">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="navbar" class="collapse navbar-collapse">
-        <ul class="navbar-nav mr-auto">
-          <li class="navbar-item">
-            <a class="nav-link" href="/">Home</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li class="navbar-item">
-            <a class="nav-link active" href="/form.html">Sign up <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="navbar-item">
-            <a class="nav-link" href="/d/acct">My Account</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="container-sm">
-      <h1 class="display-3">What are you waiting for?</h1>
-      <h2 class="display-4">Join us by filling out this short form.</h2>
-      <form>
-        <h2>Your information</h2>
-        (We'll only use these data to administer the Gaucho Bingo Night)
-        <div class="form-group">
-          <label for="fullname">Full name (preferred)</label>
-          <input class="form-control" id="fullname" name="fullname" type="text" autocomplete="name" placeholder="Required" required>
-        </div>
-        <!--
-        <div class="form-group">
-          <label for="pronouns">Pronouns</label>
-          <input class="form-control" id="pronouns" name="pronouns" type="text" placeholder="Optional">
-        </div>
-        -->
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input class="form-control" id="email" name="email" type="email" autocomplete="email" placeholder="Required" required>
-        </div>
-        <div>
-          <div class="form-group">
-            <label for="addr-l1">Address line 1</label>
-            <input class="form-control" id="addr-l1" name="addr-l1" type="text" autocomplete="address-line1" placeholder="Required" required>
-          </div>
-          <div class="form-group">
-            <label for="addr-l2">Address line 2</label>
-            <input class="form-control" id="addr-l2" name="addr-l2" type="text" autocomplete="address-line2">
-          </div>
-          <div class="form-row">
-            <div class="form-group col-sm-8">
-              <label for="addr-city">City</label>
-              <input class="form-control" id="addr-city" name="addr-city" type="text" autocomplete="address-level2" placeholder="Oakland" required>
-            </div>
-            <div class="form-group col-sm-1">
-              <label for="addr-state">State (abbr.)</label>
-              <input class="form-control" id="addr-state" name="addr-state" type="text" autocomplete="address-level1" placeholder="CA" required>
-            </div>
-            <div class="form-group col-sm-3">
-              <label for="addr-zip">ZIP code</label>
-              <input class="form-control" id="addr-zip" name="addr-zip" type="text" autocomplete="postal-code" placeholder="94602-2127" required>
-            </div>
-          </div>
-        </div>
-        <h2>What to order</h2>
-        <div class="form-row mb-4">
-          <legend class="col-form-label col-sm-2 float-sm-left">
-            Select package:
-          </legend>
-          <fieldset class="form-group col-sm-6">
-            <div class="form-check">
-              <input class="form-check-input" id="check-basic" type="radio" name="pkg" value="basic" onchange="updateInvoice()" required>
-              <label class="form-check-label" for="check-basic">
-                \$20: Basic package
-                (includes 1 bingo card, delivered via email)
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="check-basic" type="radio" name="pkg" value="vip" onchange="updateInvoice()" required checked>
-              <label class="form-check-label" for="check-basic">
-                \$60: VIP package
-                (includes cards printed on thick cardstock, snacks,
-                a commemorative drinking glass, and an ink stamper;
-                delivered by hand to any address in the Greater Bay Area)
-              </label>
-            </div>
-          </fieldset>
-          <div class="form-group offset-sm-2 col-sm-2">
-            <label class="" for="addl-cards-sel">Additional cards</label>
-            <input class="form-control" id="addl-cards-sel" name="addl-cards-sel" type="number" value="0" onchange="syncAddlCards('#addl-cards-sel', '#addl-cards-inv'); updateInvoice();">
-          </div>
-        </div>
-        <h2>Summary</h2>
-        <table class="table table-bordered table-striped table-hover mb-4">
-          <thead>
-            <tr>
-              <th scope="col">Item</th>
-              <th scope="col">Number of Cards</th>
-              <th scope="col">@</th>
-              <th class="text-right" scope="col">Unit Price</th>
-              <th class="text-right" scope="col">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td id="inv-pkg-item">Placeholder Item</td>
-              <td class="text-right" id="inv-pkg-card">2</td>
-              <td colspan="2">N/A</td>
-              <td class="text-right" id="inv-pkg-price">\$60.00</td>
-            </tr>
-            <tr>
-              <td>Additional cards</td>
-              <td class="text-right" id="inv-addl-card">
-                <div class="form-group mb-0">
-                  <label class="sr-only" for="addl-cards-inv">Quantity</label>
-                  <input class="form-control" id="addl-cards-inv" name="addl-cards-inv" type="number" value="0" onchange="syncAddlCards('#addl-cards-inv', '#addl-cards-sel'); updateInvoice();">
-                </div>
-              </td>
-              <td>@</td>
-              <td class="text-right">\$10.00</td>
-              <td class="text-right" id="inv-addl-price">\$1 000.00</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr class="table-primary">
-              <td>Total</td>
-              <td class="text-right" id="inv-total-cards">102</td>
-              <td colspan="2">N/A</td>
-              <td class="text-right" id="inv-total-price">\$1 060.00</td>
-            </tr>
-          </tfoot>
-        </table>
-        <input id="xc-total-cards" name="xc-total-cards" type="hidden" value="NaN">
-        <input id="xc-total-price" name="xc-total-price" type="hidden" value="NaN">
-        <h2>Payment</h2>
-        <div class="form-row">
-          <legend class="col-form-label col-sm-2 float-sm-left">
-            Payment method
-          </legend>
-          <fieldset class="form-group col-sm-6 float-sm-left">
-            <div class="form-check">
-              <input class="form-check-input" id="payment-token" type="radio" name="payment" value="token" onchange="enDisToken()" required>
-              <label class="form-check-label" for="payment-token">
-                Token payment
-                (select if you've been provided a token of the
-                form <code>00000000-0000-0000-0000-000000000000</code>)
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="payment-informal" type="radio" name="payment" value="informal" onchange="enDisToken()" required>
-              <label class="form-check-label" for="payment-informal">
-                Informal payment (with cash, check, etc.)
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" id="payment-paypal" type="radio" name="payment" value="paypal" onchange="enDisToken()" required>
-              <label class="form-check-label" for="payment-paypal">
-                PayPal (ACH, credit, debit, etc.)
-              </label>
-            </div>
-          </fieldset>
-          <div id="token-div" class="form-group col-sm-4">
-            <label class="" for="token-input">Enter token here</label>
-            <input class="form-control" id="token-input" name="token-val" type="text"
-                   placeholder="00000000-0000-0000-0000-000000000000"
-                   pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}\$">
-          </div>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-primary form-control">Procced to payment</button>
-        </div>
-      </form>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+  <a class="navbar-brand" href="/">
+    <img src="/gauchos.png" width="35" height="35" alt="El Cerrito Gauchos">
+    Gaucho Bingo Night
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div id="navbar" class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="navbar-item">
+        <a class="nav-link" href="/">Home</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+      <li class="navbar-item">
+        <a class="nav-link active" href="/form.html">Sign up <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="navbar-item">
+        <a class="nav-link" href="/d/acct">My Account</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<div class="container-sm">
+  <h1 class="display-3">What are you waiting for?</h1>
+  <h2 class="display-4">Join us by filling out this short form.</h2>
+  <form>
+    <h2>Your information</h2>
+    (We'll only use these data to administer the Gaucho Bingo Night)
+    <div class="form-group">
+      <label for="fullname">Full name (preferred)</label>
+      <input class="form-control" id="fullname" name="fullname" type="text" autocomplete="name" placeholder="Required" required>
     </div>
-    <script src="node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="node_modules/@popperjs/core/dist/umd/popper.js"></script>
-    <script>
-      'use strict';
-      // These values are just for client-side verification. If you edit them,
-      // the server will reject the order.
-      const pkgs =
-            {
-              "basic": {"name": "Basic package", "cards": 1, "price": 20},
-              "vip":   {"name": "VIP package",   "cards": 2, "price": 60}
-            }
-      const addl_price = 10
-      function updateInvoice()
-      {
-        var form = \$('form')[0].elements;
-        var pkg  = pkgs[form['pkg'].value];
-
-        \$('#inv-pkg-item').html(pkg.name);
-        \$('#inv-pkg-card').html(pkg.cards);
-        \$('#inv-pkg-price').html(`\\$\${pkg.price.toFixed(2)}`);
-
-        var addl = parseInt(form['addl-cards-sel'].value)
-        \$('#inv-addl-price').html(`\\$\${(addl*addl_price).toFixed(2)}`)
-
-        var totalCards = addl+pkg.cards
-        var totalPrice = addl*addl_price+pkg.price
-        \$('#inv-total-cards').html(`\${totalCards}`)
-        \$('#inv-total-price').html(`\\$\${totalPrice.toFixed(2)}`)
-        \$('#xc-total-cards').val(totalCards);
-        \$('#xc-total-price').val(totalPrice);
-      }
-      \$(document).ready(()=>{updateInvoice()});
-
-      function syncAddlCards(src, dest)
-      {
-        \$(dest).val(\$(src).val())
-      }
-
-      function enDisToken()
-      {
-        if (\$('form')[0].elements['payment'].value == 'token')
+    <!--
+    <div class="form-group">
+      <label for="pronouns">Pronouns</label>
+      <input class="form-control" id="pronouns" name="pronouns" type="text" placeholder="Optional">
+    </div>
+    -->
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input class="form-control" id="email" name="email" type="email" autocomplete="email" placeholder="Required" required>
+    </div>
+    <div>
+      <div class="form-group">
+        <label for="addr-l1">Address line 1</label>
+        <input class="form-control" id="addr-l1" name="addr-l1" type="text" autocomplete="address-line1" placeholder="Required" required>
+      </div>
+      <div class="form-group">
+        <label for="addr-l2">Address line 2</label>
+        <input class="form-control" id="addr-l2" name="addr-l2" type="text" autocomplete="address-line2">
+      </div>
+      <div class="form-row">
+        <div class="form-group col-sm-8">
+          <label for="addr-city">City</label>
+          <input class="form-control" id="addr-city" name="addr-city" type="text" autocomplete="address-level2" placeholder="Oakland" required>
+        </div>
+        <div class="form-group col-sm-1">
+          <label for="addr-state">State (abbr.)</label>
+          <input class="form-control" id="addr-state" name="addr-state" type="text" autocomplete="address-level1" placeholder="CA" required>
+        </div>
+        <div class="form-group col-sm-3">
+          <label for="addr-zip">ZIP code</label>
+          <input class="form-control" id="addr-zip" name="addr-zip" type="text" autocomplete="postal-code" placeholder="94602-2127" required>
+        </div>
+      </div>
+    </div>
+    <h2>What to order</h2>
+    <div class="form-row mb-4">
+      <legend class="col-form-label col-sm-2 float-sm-left">
+        Select package:
+      </legend>
+      <fieldset class="form-group col-sm-6">
+        <div class="form-check">
+          <input class="form-check-input" id="check-basic" type="radio" name="pkg" value="basic" onchange="updateInvoice()" required>
+          <label class="form-check-label" for="check-basic">
+            \$20: Basic package
+            (includes 1 bingo card, delivered via email)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="check-basic" type="radio" name="pkg" value="vip" onchange="updateInvoice()" required>
+          <label class="form-check-label" for="check-basic">
+            \$60: VIP package
+            (includes cards printed on thick cardstock, snacks,
+            a commemorative drinking glass, and an ink stamper;
+            delivered by hand to any address in the Greater Bay Area)
+          </label>
+        </div>
+      </fieldset>
+      <div class="form-group offset-sm-2 col-sm-2">
+        <label class="" for="addl-cards-sel">Additional cards</label>
+        <input class="form-control" id="addl-cards-sel" name="addl-cards-sel" type="number" value="0" onchange="syncAddlCards('#addl-cards-sel', '#addl-cards-inv'); updateInvoice();">
+      </div>
+    </div>
+    <div id="inv" hidden>
+      <h2>Summary</h2>
+      <table class="table table-bordered table-striped table-hover mb-4">
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col">Number of Cards</th>
+            <th scope="col">@</th>
+            <th class="text-right" scope="col">Unit Price</th>
+            <th class="text-right" scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td id="inv-pkg-item">Placeholder Item</td>
+            <td class="text-right" id="inv-pkg-card">2</td>
+            <td colspan="2">N/A</td>
+            <td class="text-right" id="inv-pkg-price">\$60.00</td>
+          </tr>
+          <tr>
+            <td>Additional cards</td>
+            <td class="text-right" id="inv-addl-card">
+              <div class="form-group mb-0">
+                <label class="sr-only" for="addl-cards-inv">Quantity</label>
+                <input class="form-control" id="addl-cards-inv" name="addl-cards-inv" type="number" value="0" onchange="syncAddlCards('#addl-cards-inv', '#addl-cards-sel'); updateInvoice();">
+              </div>
+            </td>
+            <td>@</td>
+            <td class="text-right">\$10.00</td>
+            <td class="text-right" id="inv-addl-price">\$1 000.00</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="table-primary">
+            <td>Total</td>
+            <td class="text-right" id="inv-total-cards">102</td>
+            <td colspan="2">N/A</td>
+            <td class="text-right" id="inv-total-price">\$1 060.00</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <input id="xc-total-cards" name="xc-total-cards" type="hidden" value="NaN">
+    <input id="xc-total-price" name="xc-total-price" type="hidden" value="NaN">
+    <h2>Payment</h2>
+    <div class="form-row">
+      <legend class="col-form-label col-sm-2 float-sm-left">
+        Payment method
+      </legend>
+      <fieldset class="form-group col-sm-6 float-sm-left">
+        <div class="form-check">
+          <input class="form-check-input" id="payment-token" type="radio" name="payment" value="token" onchange="enDisToken()" required>
+          <label class="form-check-label" for="payment-token">
+            Token payment
+            (select if you've been provided a token of the
+            form <code>00000000-0000-0000-0000-000000000000</code>)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="payment-informal" type="radio" name="payment" value="informal" onchange="enDisToken()" required>
+          <label class="form-check-label" for="payment-informal">
+            Informal payment (with cash, check, etc.)
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" id="payment-paypal" type="radio" name="payment" value="paypal" onchange="enDisToken()" required>
+          <label class="form-check-label" for="payment-paypal">
+            PayPal (ACH, credit, debit, etc.)
+          </label>
+        </div>
+      </fieldset>
+      <div id="token-div" class="form-group col-sm-4">
+        <label class="" for="token-input">Enter token here</label>
+        <input class="form-control" id="token-input" name="token-val" type="text"
+               placeholder="00000000-0000-0000-0000-000000000000"
+               pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}\$">
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary form-control">Procced to payment</button>
+    </div>
+  </form>
+</div>
+<script>
+  'use strict';
+  // These values are just for client-side verification. If you edit them,
+  // the server will reject the order.
+  const pkgs =
         {
-          \$('#token-div').attr('hidden', null)
-          \$('#token-input').attr('disabled', null)
-          \$('#token-input').attr('required', 't')
-        } else {
-          \$('#token-div').attr('hidden', 't')
-          \$('#token-input').attr('disabled', 't')
-          \$('#token-input').attr('required', null)
+          "basic": {"name": "Basic package", "cards": 1, "price": 20},
+          "vip":   {"name": "VIP package",   "cards": 2, "price": 60}
         }
-      }
-      \$(document).ready(()=>{enDisToken()});
-    </script>
-  </body>
-</html>
+  const addl_price = 10
+  function updateInvoice()
+  {
+    var form = \$('form')[0].elements;
+    var pkg  = pkgs[form['pkg'].value];
+
+    \$('#inv').attr('hidden', null)
+    \$('#inv-pkg-item').html(pkg.name);
+    \$('#inv-pkg-card').html(pkg.cards);
+    \$('#inv-pkg-price').html(`\$\${pkg.price.toFixed(2)}`);
+
+    var addl = parseInt(form['addl-cards-sel'].value)
+    \$('#inv-addl-price').html(`\$\${(addl*addl_price).toFixed(2)}`)
+
+    var totalCards = addl+pkg.cards
+    var totalPrice = addl*addl_price+pkg.price
+    \$('#inv-total-cards').html(`\${totalCards}`)
+    \$('#inv-total-price').html(`\$\${totalPrice.toFixed(2)}`)
+    \$('#xc-total-cards').val(totalCards);
+    \$('#xc-total-price').val(totalPrice);
+  }
+  \$(document).ready(()=>{updateInvoice()});
+
+  function syncAddlCards(src, dest)
+  {
+    \$(dest).val(\$(src).val())
+  }
+
+  function enDisToken()
+  {
+    if (\$('form')[0].elements['payment'].value == 'token')
+    {
+      \$('#token-div').attr('hidden', null)
+      \$('#token-input').attr('disabled', null)
+      \$('#token-input').attr('required', 't')
+    } else {
+      \$('#token-div').attr('hidden', 't')
+      \$('#token-input').attr('disabled', 't')
+      \$('#token-input').attr('required', null)
+    }
+  }
+  \$(document).ready(()=>{enDisToken()});
+</script>
