@@ -94,14 +94,14 @@
             <div class="form-check">
               <input class="form-check-input" id="check-basic" type="radio" name="pkg" value="basic" onchange="updateInvoice()" required>
               <label class="form-check-label" for="check-basic">
-                $20: Basic package
+                \$20: Basic package
                 (includes 1 bingo card, delivered via email)
               </label>
             </div>
             <div class="form-check">
               <input class="form-check-input" id="check-basic" type="radio" name="pkg" value="vip" onchange="updateInvoice()" required checked>
               <label class="form-check-label" for="check-basic">
-                $60: VIP package
+                \$60: VIP package
                 (includes cards printed on thick cardstock, snacks,
                 a commemorative drinking glass, and an ink stamper;
                 delivered by hand to any address in the Greater Bay Area)
@@ -129,7 +129,7 @@
               <td id="inv-pkg-item">Placeholder Item</td>
               <td class="text-right" id="inv-pkg-card">2</td>
               <td colspan="2">N/A</td>
-              <td class="text-right" id="inv-pkg-price">$60.00</td>
+              <td class="text-right" id="inv-pkg-price">\$60.00</td>
             </tr>
             <tr>
               <td>Additional cards</td>
@@ -140,8 +140,8 @@
                 </div>
               </td>
               <td>@</td>
-              <td class="text-right">$10.00</td>
-              <td class="text-right" id="inv-addl-price">$1 000.00</td>
+              <td class="text-right">\$10.00</td>
+              <td class="text-right" id="inv-addl-price">\$1 000.00</td>
             </tr>
           </tbody>
           <tfoot>
@@ -149,7 +149,7 @@
               <td>Total</td>
               <td class="text-right" id="inv-total-cards">102</td>
               <td colspan="2">N/A</td>
-              <td class="text-right" id="inv-total-price">$1 060.00</td>
+              <td class="text-right" id="inv-total-price">\$1 060.00</td>
             </tr>
           </tfoot>
         </table>
@@ -186,7 +186,7 @@
             <label class="" for="token-input">Enter token here</label>
             <input class="form-control" id="token-input" name="token-val" type="text"
                    placeholder="00000000-0000-0000-0000-000000000000"
-                   pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}$">
+                   pattern="^[0-9a-f]{8}-[0-9a-f]{4}-[0-5][0-9a-f]{3}-[089ab][0-9a-f]{3}-[0-9a-f]{12}\$">
           </div>
         </div>
         <div class="form-group">
@@ -209,44 +209,44 @@
       const addl_price = 10
       function updateInvoice()
       {
-        var form = $('form')[0].elements;
+        var form = \$('form')[0].elements;
         var pkg  = pkgs[form['pkg'].value];
 
-        $('#inv-pkg-item').html(pkg.name);
-        $('#inv-pkg-card').html(pkg.cards);
-        $('#inv-pkg-price').html(`\$${pkg.price.toFixed(2)}`);
+        \$('#inv-pkg-item').html(pkg.name);
+        \$('#inv-pkg-card').html(pkg.cards);
+        \$('#inv-pkg-price').html(`\\$\${pkg.price.toFixed(2)}`);
 
         var addl = parseInt(form['addl-cards-sel'].value)
-        $('#inv-addl-price').html(`\$${(addl*addl_price).toFixed(2)}`)
+        \$('#inv-addl-price').html(`\\$\${(addl*addl_price).toFixed(2)}`)
 
         var totalCards = addl+pkg.cards
         var totalPrice = addl*addl_price+pkg.price
-        $('#inv-total-cards').html(`${totalCards}`)
-        $('#inv-total-price').html(`\$${totalPrice.toFixed(2)}`)
-        $('#xc-total-cards').val(totalCards);
-        $('#xc-total-price').val(totalPrice);
+        \$('#inv-total-cards').html(`\${totalCards}`)
+        \$('#inv-total-price').html(`\\$\${totalPrice.toFixed(2)}`)
+        \$('#xc-total-cards').val(totalCards);
+        \$('#xc-total-price').val(totalPrice);
       }
-      $(document).ready(()=>{updateInvoice()});
+      \$(document).ready(()=>{updateInvoice()});
 
       function syncAddlCards(src, dest)
       {
-        $(dest).val($(src).val())
+        \$(dest).val(\$(src).val())
       }
 
       function enDisToken()
       {
-        if ($('form')[0].elements['payment'].value == 'token')
+        if (\$('form')[0].elements['payment'].value == 'token')
         {
-          $('#token-div').attr('hidden', null)
-          $('#token-input').attr('disabled', null)
-          $('#token-input').attr('required', 't')
+          \$('#token-div').attr('hidden', null)
+          \$('#token-input').attr('disabled', null)
+          \$('#token-input').attr('required', 't')
         } else {
-          $('#token-div').attr('hidden', 't')
-          $('#token-input').attr('disabled', 't')
-          $('#token-input').attr('required', null)
+          \$('#token-div').attr('hidden', 't')
+          \$('#token-input').attr('disabled', 't')
+          \$('#token-input').attr('required', null)
         }
       }
-      $(document).ready(()=>{enDisToken()});
+      \$(document).ready(()=>{enDisToken()});
     </script>
   </body>
 </html>
