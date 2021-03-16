@@ -5,6 +5,7 @@ config/secrets.jl
 docs/build
 log/*
 session/*
+sessions/*
 !*.gitkeep
 Manifest.toml
 
