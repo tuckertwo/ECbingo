@@ -42,4 +42,7 @@ Thumbs.db
 # NPM packages folder.
 node_modules/
 
+# Private stuff
+public/gauchos.*
+
 *.pdf
